@@ -1,6 +1,5 @@
 import React from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
-import { SpotifyApiContext } from 'react-spotify-api';
 
 import './App.css';
 
@@ -13,7 +12,7 @@ class App extends React.Component {
   authLink = "https://accounts.spotify.com/authorize" +
     "?client_id=929d639d36d0410793f9b8d5f084246f" +
     "&response_type=token" +
-    "&redirect_uri=" + encodeURIComponent("http://localhost:3000/callback") +
+    "&redirect_uri=" + encodeURIComponent("https://shuffle.ninja") +
     "&scope=" + encodeURIComponent("user-library-read")
 
   async componentDidMount() {
@@ -87,7 +86,9 @@ class App extends React.Component {
         .filter((kv) => kv[0] === "access_token")
         .map((kv) => kv[1])
 
-      return tokens[0];
+      if (tokens.length > 0) {
+        return tokens[0];
+      }
     }
     return null;
   }
