@@ -3,17 +3,20 @@ import SpotifyWebApi from 'spotify-web-api-js';
 
 import './App.css';
 
+const clientId = "929d639d36d0410793f9b8d5f084246f";
+const callbackUri = process.env.NODE_ENV === 'production'
+  ? "https://shuffle.ninja/callback"
+  : "http://localhost:3000/callback";
+const authLink = "https://accounts.spotify.com/authorize" +
+  "?client_id=" + encodeURIComponent(clientId) +
+  "&response_type=token" +
+  "&redirect_uri=" + encodeURIComponent(callbackUri) +
+  "&scope=user-library-read"
+
 class App extends React.Component {
 
   state = { album: null }
-
   accessToken = this.parseAccessToken();
-
-  authLink = "https://accounts.spotify.com/authorize" +
-    "?client_id=929d639d36d0410793f9b8d5f084246f" +
-    "&response_type=token" +
-    "&redirect_uri=" + encodeURIComponent("https://shuffle.ninja") +
-    "&scope=" + encodeURIComponent("user-library-read")
 
   async componentDidMount() {
     if (this.accessToken && !this.state.album) {
@@ -71,7 +74,7 @@ class App extends React.Component {
             ???
           </div>
           <div>
-            <a href={this.authLink}>Sign in with Spotify to reveal the mystery album.</a>
+            <a href={authLink}>Sign in with Spotify to reveal the mystery album.</a>
           </div>
         </div>
       );
