@@ -16,12 +16,16 @@
   max-height: min(75vh, 75vw);
   max-width: min(75vh, 75vw);
   box-shadow: 0 0 min(3vh, 3vw) rgba(0,0,0,0.3);
-  background-color: #af5e2f;
+  background-color: #000;
   font-size: min(33vh, 33vw);
   display: flex;
   justify-content: center;
   align-items: center;
   margin: min(2vh, 2vw);
+}
+
+.Unknown {
+  background-color: #af5e2f;
 }
 
 .Cover img {
@@ -30,7 +34,4 @@
 
 a {
   color: #fff;
-}
-
-.Mystery {
 }

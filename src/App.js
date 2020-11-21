@@ -48,7 +48,8 @@ class App extends React.Component {
     return expiry && Number(expiry) < Date.now();
   }
 
-  authenticate() {
+  authenticate(e) {
+    e.preventDefault();
     localStorage.removeItem('token-expiry');
     localStorage.removeItem('token');
     window.location.href = authLink
@@ -116,7 +117,7 @@ class App extends React.Component {
       } else {
         return (
           <div className="App">
-            <div className="Cover">
+            <div className="Cover Unknown">
               ...
             </div>
             <div>
@@ -129,12 +130,12 @@ class App extends React.Component {
     } else {
       return (
         <div className="App">
-          <div className="Cover">
+          <div className="Cover Unknown">
             ???
           </div>
           <div>
-            <button onClick={this.authenticate}>Sign in with Spotify</button> to<br />
-            reveal the mystery album.
+            <a onClick={this.authenticate} href={authLink}>Sign in with Spotify</a><br />
+            to reveal the mystery album
           </div>
         </div>
       );
