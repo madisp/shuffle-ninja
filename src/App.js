@@ -33,7 +33,6 @@ class App extends React.Component {
   }
 
   async getRandomAlbum(token) {
-    console.log('watt');
     let api = new SpotifyWebApi();
     api.setAccessToken(token);
     let probe = await api.getMySavedAlbums({ limit: 1 });
@@ -84,7 +83,6 @@ class App extends React.Component {
         this.setState({ album: album });
       } catch (e) {
         console.error("Exception thrown", e.stack);
-        console.log("Failure, all failure");
         // clear all
         this.setState({ token: null, album: null });
       }
@@ -98,7 +96,6 @@ class App extends React.Component {
   render() {
     if (this.state.token) {
       if (this.state.album) {
-        console.log(JSON.stringify(this.state.album));
         let album = this.state.album;
 
         let artists = album.artists.map((a) => a.name).join('/');
