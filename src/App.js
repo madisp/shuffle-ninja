@@ -49,7 +49,9 @@ class App extends React.Component {
   }
 
   authenticate(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     localStorage.removeItem('token-expiry');
     localStorage.removeItem('token');
     window.location.href = authLink
